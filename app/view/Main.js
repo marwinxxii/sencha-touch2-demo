@@ -1,7 +1,7 @@
 Ext.define("demo.view.Main", {
     extend: 'Ext.Panel',
     requires: [
-        'Ext.TitleBar'
+        'Ext.TitleBar', 'Ext.field.DatePicker', 'Ext.form.FieldSet'
     ],
     config: {
         /*layout: {
@@ -12,15 +12,8 @@ Ext.define("demo.view.Main", {
         items: [
             {
                 xtype: 'titlebar',
-                title: 'Demo',
-                docked: 'top',
-                items: [
-                    {
-                        iconCls: 'home',
-                        align: 'right',
-                        iconMask: 'true'
-                    }
-                ]
+                title: 'Demo - Flickr photo search',
+                docked: 'top'
             },
             {
                 xtype: 'fieldset',
@@ -28,20 +21,20 @@ Ext.define("demo.view.Main", {
                 items: [
                     {
                         xtype: 'textfield',
-                        label: 'Param1',
-                        name: 'param1',
-                        required: true
+                        label: 'Title',
+                        name: 'query'
                     },
                     {
                         xtype: 'textfield',
-                        label: 'Param2',
-                        name: 'param2'
+                        label: 'City',
+                        name: 'city'
                     },
                     {
                         xtype: 'datepickerfield',
-                        label: 'Param3',
-                        name: 'param3',
-                        value: new Date()
+                        label: 'Date',
+                        name: 'date',
+                        value: new Date(),
+                        id: 'datepicker'
                     }
                 ]
             },
@@ -49,7 +42,12 @@ Ext.define("demo.view.Main", {
                 xtype: 'button',
                 ui: 'action',
                 text: 'Search',
+                //handler: this.onStartSearch
+                id: 'search'
             }
         ]
+    },
+    onStartSearch: function() {
+        this.fireEvent('onStartSearch', this);
     }
 });

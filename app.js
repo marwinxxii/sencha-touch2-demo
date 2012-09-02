@@ -5,7 +5,10 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    views: ['Main'],
+    views: ['Main', 'Search', 'ItemsList', 'PhotoItem'],
+    controllers: ['Search'],
+    models: ['Photo'],
+    stores: ['Flickr'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -26,6 +29,7 @@ Ext.application({
     },
 
     launch: function() {
+        Ext.Loader.setConfig({disableCaching: false});
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
